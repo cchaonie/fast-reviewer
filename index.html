@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div>
+            <h1>To Review Faster</h1>
+            <p>use <strong>Command</strong> to select multiple option</p>
+            <div class="panel">
+                <div class="action">
+                    <div><button id="close">CLOSE</button></div>
+                    <div>
+                        <select id="close_target" multiple>
+                            <option selected value=".test.tsx">.test.tsx</option>
+                            <option value=".story.tsx">.story.tsx</option>
+                            <option value=".test.tsx.snap">
+                                .test.tsx.snap
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="action">
+                    <div><button id="open">OPEN</button></div>
+                    <div>
+                        <select id="open_target" multiple>
+                            <option selected value=".test.tsx">.test.tsx</option>
+                            <option value=".story.tsx">.story.tsx</option>
+                            <option value=".test.tsx.snap">
+                                .test.tsx.snap
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>
