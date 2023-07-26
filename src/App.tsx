@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 
-import "./app.css";
+import "./App.css";
 
 export const App = () => {
   useEffect(() => {
     const close = document.getElementById("close");
-
     const open = document.getElementById("open");
 
     function getSelectedValues(target: HTMLSelectElement) {
@@ -17,7 +16,6 @@ export const App = () => {
     }
 
     /**
-     *
      * @param {*} extension file extension
      * @param {*} visibility 0 for close, 1 for open
      */
@@ -27,12 +25,14 @@ export const App = () => {
         const ariaLabel = article.getAttribute("aria-label");
 
         extensions.forEach((extension) => {
-          if (ariaLabel && ariaLabel.endsWith(extension)) {
+          if (ariaLabel && new RegExp(extension).test(ariaLabel)) {
             const header = article.querySelector<HTMLDivElement>(
               "[data-testid=file-header]"
             );
             const content = article.querySelector(
-              `[aria-hidden=${visibility === 0 ? "false" : "true"}]`
+              `[aria-hidden=${
+                visibility === 0 ? "false" : "true"
+              }] [data-testid=file-content]`
             );
             if (header && content) {
               header.click();
@@ -75,7 +75,6 @@ export const App = () => {
     };
 
     close.addEventListener("click", closeClickHandler);
-
     open.addEventListener("click", openClickHandler);
 
     return () => {
@@ -85,37 +84,41 @@ export const App = () => {
   }, []);
 
   return (
-    <div className="app">
+    <div className="w-80 p-2">
       <h1>To Review Faster</h1>
       <p>
         use <strong>Command</strong> to select multiple option
       </p>
-      <div className="panel">
+      <div className="panel mt-2">
         <div className="action">
           <div>
-            <button id="close">CLOSE</button>
+            <button type="button" className="border px-2 py-1" id="close">
+              CLOSE
+            </button>
           </div>
           <div>
             <select id="close_target" multiple>
-              <option selected value=".test.tsx">
-                .test.tsx
+              <option selected value=".test.tsx?">
+                .test.tsx?
               </option>
-              <option value=".story.tsx">.story.tsx</option>
-              <option value=".test.tsx.snap">.test.tsx.snap</option>
+              <option value=".story.tsx?">.story.tsx?</option>
+              <option value=".test.tsx?.snap">.test.tsx?.snap</option>
             </select>
           </div>
         </div>
         <div className="action">
           <div>
-            <button id="open">OPEN</button>
+            <button type="button" className="border px-2 py-1" id="open">
+              OPEN
+            </button>
           </div>
           <div>
             <select id="open_target" multiple>
-              <option selected value=".test.tsx">
-                .test.tsx
+              <option selected value=".test.tsx?">
+                .test.tsx?
               </option>
-              <option value=".story.tsx">.story.tsx</option>
-              <option value=".test.tsx.snap">.test.tsx.snap</option>
+              <option value=".story.tsx?">.story.tsx?</option>
+              <option value=".test.tsx?.snap">.test.tsx?.snap</option>
             </select>
           </div>
         </div>
