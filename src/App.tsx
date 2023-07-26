@@ -8,8 +8,8 @@ export const App = () => {
 
     const open = document.getElementById("open");
 
-    function getSelectedValues(target) {
-      const values = [];
+    function getSelectedValues(target: HTMLSelectElement) {
+      const values: string[] = [];
       for (const op of target.selectedOptions) {
         values.push(op.value);
       }
@@ -21,7 +21,7 @@ export const App = () => {
      * @param {*} extension file extension
      * @param {*} visibility 0 for close, 1 for open
      */
-    function toggleVisibility(extensions, visibility) {
+    function toggleVisibility(extensions: string[], visibility: number) {
       const articles = document.querySelectorAll("article");
       articles.forEach((article) => {
         const ariaLabel = article.getAttribute("aria-label");
@@ -43,29 +43,33 @@ export const App = () => {
     }
 
     const closeClickHandler = async () => {
-      const [tab] = await window.chrome.tabs.query({
+      const [tab] = await chrome.tabs.query({
         active: true,
         currentWindow: true,
       });
-      const values = getSelectedValues(document.getElementById("close_target"));
+      const values = getSelectedValues(
+        document.getElementById("close_target") as HTMLSelectElement
+      );
 
-      window.chrome.scripting.executeScript({
+      chrome.scripting.executeScript<[string[], number], void>({
         target: { tabId: tab.id },
-        function: toggleVisibility,
+        func: toggleVisibility,
         args: [values, 0],
       });
     };
 
     const openClickHandler = async () => {
-      const [tab] = await window.chrome.tabs.query({
+      const [tab] = await chrome.tabs.query({
         active: true,
         currentWindow: true,
       });
-      const values = getSelectedValues(document.getElementById("open_target"));
+      const values = getSelectedValues(
+        document.getElementById("open_target") as HTMLSelectElement
+      );
 
-      window.chrome.scripting.executeScript({
+      chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: toggleVisibility,
+        func: toggleVisibility,
         args: [values, 1],
       });
     };
