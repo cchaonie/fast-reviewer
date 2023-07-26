@@ -1,0 +1,25 @@
+{
+  "name": "fast-reviewer",
+  "description": "Help us to review better",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/images/asgard_16.png",
+      "32": "/images/asgard_32.png",
+      "48": "/images/asgard_48.png",
+      "128": "/images/asgard_128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/asgard_16.png",
+    "32": "/images/asgard_32.png",
+    "48": "/images/asgard_48.png",
+    "128": "/images/asgard_128.png"
+  }
+}

@@ -1,0 +1,69 @@
+# Environment Configuration
+.env
+.yalc
+yalc.lock
+
+# Build output folders
+artifacts/
+build/
+buildConfig/
+storybook-static/
+deploy/origami/publish/
+deploy/storybook/publish/
+.cache
+.lighthouseci
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# Debug log from npm
+npm-debug.log
+
+# IntelliJ IDE ignore
+.idea
+
+# Visual Studio Code
+.vscode/*
+!.vscode/launch.json
+.history
+
+# flow-typed Lib Defs
+flow-typed/
+
+# Flow Coverage Report
+flow-coverage/
+
+# OSX Files
+.DS_Store
+
+# Webpack loaders
+.cache-loader
+.cache
+
+# Generated SSL certificates for development
+.ssl
+
+# Error report
+report.*.json
+
+# trivy ext
+.dccache
+.iac-data/
+
+dist

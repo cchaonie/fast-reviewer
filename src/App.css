@@ -1,0 +1,26 @@
+.panel {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel button {
+  margin: 12px 0;
+  flex-basis: content;
+  flex-grow: 0;
+}
+
+.action {
+  margin-top: 8px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.action div {
+  width: 50%;
+}
+
+.action:first-child {
+  margin-top: 0;
+}

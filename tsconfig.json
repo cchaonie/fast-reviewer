@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "es2016",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "newLine": "LF",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "typeRoots": [".src/global.d.ts", "node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
