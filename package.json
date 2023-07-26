@@ -13,6 +13,9 @@
     "typescript"
   ],
   "author": "cchaonie",
+  "engines": {
+    "node": ">=16.7.0"
+  },
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
