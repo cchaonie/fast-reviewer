@@ -146,11 +146,7 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select
-              id="close_target"
-              multiple
-              defaultValue={[targetOptions[0]]}
-            >
+            <select className="overflow-auto" id="close_target" multiple>
               {targetOptionsMap}
             </select>
           </div>
@@ -162,7 +158,7 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select id="open_target" multiple defaultValue={[targetOptions[0]]}>
+            <select className="overflow-auto" id="open_target" multiple>
               {targetOptionsMap}
             </select>
           </div>
