@@ -97,7 +97,7 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select id="close_target" multiple>
+            <select className="overflow-auto" id="close_target" multiple>
               <option selected value=".test.tsx?">
                 .test.tsx?
               </option>
@@ -113,7 +113,7 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select id="open_target" multiple>
+            <select className="overflow-auto" id="open_target" multiple>
               <option selected value=".test.tsx?">
                 .test.tsx?
               </option>
