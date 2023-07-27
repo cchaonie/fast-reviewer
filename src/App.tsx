@@ -1,11 +1,59 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 
 export const App = () => {
+  const [targetOptions, setTargetOptions] = useState([
+    ".test.tsx",
+    ".story.tsx",
+    ".test.tsx.snap",
+  ]);
+
+  const TargetOptions = targetOptions.map((value) => (
+    <option key={value} value={value}>
+      {value}
+    </option>
+  ));
+
   useEffect(() => {
     const close = document.getElementById("close");
     const open = document.getElementById("open");
+
+    function handleTargetOptions() {
+      const articles = document.querySelectorAll("article");
+
+      const newTargetOptions = [];
+      // 单测文件，快照文件，storybook文件特殊处理，其余的照常取后缀
+      const matchSuffixRegex =
+        /\.test\.tsx\.snap$|\.test\.tsx$|\.story\.tsx$|\.([^./\\]+)$/;
+      articles.forEach((article) => {
+        const ariaLabel = article.getAttribute("aria-label");
+        const suffix = matchSuffixRegex.exec(ariaLabel)?.[0];
+        if (!newTargetOptions.includes(suffix)) {
+          newTargetOptions.push(suffix);
+        }
+      });
+
+      return newTargetOptions;
+    }
+
+    async function init() {
+      const [tab] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+      });
+
+      chrome.scripting
+        .executeScript({
+          target: { tabId: tab.id },
+          func: handleTargetOptions,
+        })
+        .then((res) => {
+          setTargetOptions(res[0].result);
+        });
+    }
+
+    init();
 
     function getSelectedValues(target: HTMLSelectElement) {
       const values: string[] = [];
@@ -81,7 +129,7 @@ export const App = () => {
       close.removeEventListener("click", closeClickHandler);
       open.removeEventListener("click", openClickHandler);
     };
-  }, []);
+  }, [setTargetOptions]);
 
   return (
     <div className="w-80 p-2">
@@ -97,12 +145,12 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select id="close_target" multiple>
-              <option selected value=".test.tsx?">
-                .test.tsx?
-              </option>
-              <option value=".story.tsx?">.story.tsx?</option>
-              <option value=".test.tsx?.snap">.test.tsx?.snap</option>
+            <select
+              id="close_target"
+              multiple
+              defaultValue={[targetOptions[0]]}
+            >
+              {TargetOptions}
             </select>
           </div>
         </div>
@@ -113,12 +161,8 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <select id="open_target" multiple>
-              <option selected value=".test.tsx?">
-                .test.tsx?
-              </option>
-              <option value=".story.tsx?">.story.tsx?</option>
-              <option value=".test.tsx?.snap">.test.tsx?.snap</option>
+            <select id="open_target" multiple defaultValue={[targetOptions[0]]}>
+              {TargetOptions}
             </select>
           </div>
         </div>
