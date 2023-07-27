@@ -9,7 +9,7 @@ export const App = () => {
     ".test.tsx.snap",
   ]);
 
-  const TargetOptions = targetOptions.map((value) => (
+  const targetOptionsMap = targetOptions.map((value) => (
     <option key={value} value={value}>
       {value}
     </option>
@@ -151,7 +151,7 @@ export const App = () => {
               multiple
               defaultValue={[targetOptions[0]]}
             >
-              {TargetOptions}
+              {targetOptionsMap}
             </select>
           </div>
         </div>
@@ -163,7 +163,7 @@ export const App = () => {
           </div>
           <div>
             <select id="open_target" multiple defaultValue={[targetOptions[0]]}>
-              {TargetOptions}
+              {targetOptionsMap}
             </select>
           </div>
         </div>
