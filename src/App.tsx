@@ -24,11 +24,12 @@ export const App = () => {
 
       const newTargetOptions = [];
       // 单测文件，快照文件，storybook文件特殊处理，其余的照常取后缀
-      const matchSuffixRegex =
+      const suffixRegex =
         /\.test\.tsx\.snap$|\.test\.tsx$|\.story\.tsx$|\.([^./\\]+)$/;
       articles.forEach((article) => {
         const ariaLabel = article.getAttribute("aria-label");
-        const suffix = matchSuffixRegex.exec(ariaLabel)?.[0];
+        const suffix = suffixRegex.exec(ariaLabel)?.[0];
+
         if (!newTargetOptions.includes(suffix)) {
           newTargetOptions.push(suffix);
         }
@@ -129,7 +130,7 @@ export const App = () => {
       close.removeEventListener("click", closeClickHandler);
       open.removeEventListener("click", openClickHandler);
     };
-  }, [setTargetOptions]);
+  }, []);
 
   return (
     <div className="w-80 p-2">
