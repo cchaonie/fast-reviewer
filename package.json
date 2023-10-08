@@ -33,7 +33,7 @@
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.14",
     "cross-env": "^7.0.3",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.31",
     "rimraf": "^4.4.1",
     "rollup": "^3.26.3",
     "rollup-plugin-dev": "^2.0.4",
